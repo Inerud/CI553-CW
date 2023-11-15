@@ -32,17 +32,17 @@ import java.awt.*;
  */
 class Main
 {
-  // Change to false to reduce the number of duplicated clients
+  // Change into false to reduce the number of duplicated clients
 
   private final static boolean many = false;        // Many clients? (Or minimal clients)
 
-  public static void main (String args[])
+  public static void main (String[] args)
   {
     new Main().begin();
   }
 
   /**
-   * Starts test system (Non distributed)
+   * Starts test system (Non-distributed)
    */
   public void begin()
   {
