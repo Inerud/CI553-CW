@@ -21,12 +21,13 @@ import java.util.*;
  * @author  Mike Smith University of Brighton
  * @version 3.0
  */
+
  
 public class Order implements OrderProcessing
 {
   private enum State {Waiting, BeingPicked, ToBeCollected };
   /**
-   * Wraps a Basket and it state into a folder
+   * Wraps a Basket and its state into a folder
    */
   private class Folder
   {
@@ -74,9 +75,13 @@ public class Order implements OrderProcessing
    *   would be good to recycle numbers after 999
    * @return A unique order number
    */
+
   public synchronized int uniqueNumber()
          throws OrderException
   {
+    if (theNextNumber == 9) {
+      theNextNumber = 1000;
+    }
     return theNextNumber++;
   }
 

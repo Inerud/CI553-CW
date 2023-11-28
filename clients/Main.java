@@ -146,7 +146,7 @@ class Main
     
     DisplayModel model      = new DisplayModel(mlf);
     DisplayView view        = new DisplayView( window, mlf, pos.width, pos.height );
-    DisplayController cont  = new DisplayController( model, view );
+    DisplayController cont  = new DisplayController( model, view , mlf);
     view.setController( cont );
 
     model.addObserver( view );       // Add observer to the model

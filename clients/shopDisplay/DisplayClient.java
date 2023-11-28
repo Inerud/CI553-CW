@@ -37,7 +37,7 @@ public class DisplayClient
     
     DisplayModel    model = new  DisplayModel(mf);
     DisplayView     view  = new  DisplayView( window, mf, 0, 0 );
-    DisplayController cont  = new DisplayController( model, view );
+    DisplayController cont  = new DisplayController( model, view , mf);
     view.setController( cont );
 
     model.addObserver( view );       // Add observer to the model

@@ -1,7 +1,9 @@
 package clients.shopDisplay;
 
+import catalogue.Product;
 import middle.MiddleFactory;
 import middle.OrderException;
+import middle.StockException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +28,7 @@ public class DisplayView extends Canvas implements Observer
   private int W = 400;         // Width  of window 
   private String textToDisplay = "";
   private DisplayController cont= null;
+  private JTextField searchField = new JTextField(20);
   
   /**
    * Construct the view
@@ -43,7 +46,23 @@ public class DisplayView extends Canvas implements Observer
     rootWindow.setSize( W, H );                     // Size of Window  
     rootWindow.setLocation( x, y );                 // Position on screen
     rootWindow.add( this, BorderLayout.CENTER );    //  Add to rootwindow
-    
+
+    JPanel searchPanel = new JPanel();
+    searchPanel.add(new JLabel("Search Product: "));
+    searchPanel.add(searchField);
+
+    JButton searchButton = new JButton("Search");
+    searchButton.addActionListener(e -> {
+      String searchString = searchField.getText();
+      try {
+        Product product = cont.getProductDetails(searchString);
+        displayProductDetails(product);
+      } catch (StockException ex) {
+        displayErrorMessage("Error fetching product details");
+      }
+    });
+    searchPanel.add(searchButton);
+    rootWindow.add(searchPanel, BorderLayout.NORTH);
     rootWindow.setVisible( true );                  // Make visible
   }
   
@@ -165,4 +184,19 @@ public class DisplayView extends Canvas implements Observer
     }
     return res;
   }
+
+  private void displayErrorMessage(String message) {
+    textToDisplay = "Error: " + message;
+    repaint();
+  }
+
+  private void displayProductDetails(Product product) {
+    textToDisplay = "Product Details:\n" +
+            "Product Number: " + product.getProductNum() + "\n" +
+            "Description: " + product.getDescription() + "\n" +
+            "Price: " + product.getPrice() + "\n" +
+            "Quantity: " + product.getQuantity();
+    repaint();
+  }
+
 }
