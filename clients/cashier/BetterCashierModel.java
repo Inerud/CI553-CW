@@ -17,4 +17,15 @@ public class BetterCashierModel extends CashierModel{
         return new BetterBasket(); // Assuming BetterBasket is a class that extends Basket
     }
 
+//    @Override
+//    public void removeLastItem() {
+//        String theAction = "";
+//        System.out.println("In BetterCashierModel");
+//        System.out.println("TheBasket: " + theBasket);
+//        theBasket = null;
+//        setChanged(); notifyObservers(theAction);
+//        System.out.println("Removed last item from basket");
+//
+//    }
+
 }

@@ -23,7 +23,7 @@ public class CustomerModel extends Observable
 
   private String      pn = "";                    // Product being processed
 
-  private StockReader     theStock     = null;
+  protected StockReader     theStock     = null;
   private OrderProcessing theOrder     = null;
   private ImageIcon       thePic       = null;
 

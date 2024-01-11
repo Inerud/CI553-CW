@@ -35,7 +35,7 @@ public class Basket extends ArrayList<Product> implements Serializable
    */
   public void setOrderNum( int anOrderNum )
   {
-    theOrderNum = anOrderNum;
+      theOrderNum = anOrderNum;
   }
 
   /**

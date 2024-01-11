@@ -1,6 +1,8 @@
 package clients.cashier;
 
 
+import middle.MiddleFactory;
+
 /**
  * The Cashier Controller
  * @author M A Smith (c) June 2014
@@ -46,4 +48,10 @@ public class CashierController
   {
     model.doBought();
   }
+
+  public void doUndo() {
+    model.removeLastItem(); //TODO: MADE CHANGE HERE
+  }
 }
+
+

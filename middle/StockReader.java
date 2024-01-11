@@ -3,6 +3,7 @@ package middle;
 import catalogue.Product;
 
 import javax.swing.*;
+import java.util.List;
 
 /**
   * Interface for read access to the stock list.
@@ -15,7 +16,7 @@ public interface StockReader
 
  /**
    * Checks if the product exits in the stock list
-   * @param pNum Product nymber
+   * @param pNum Product number
    * @return true if exists otherwise false
    * @throws StockException if issue
    */
@@ -23,7 +24,7 @@ public interface StockReader
          
   /**
    * Returns details about the product in the stock list
-   * @param pNum Product nymber
+   * @param pNum Product number
    * @return StockNumber, Description, Price, Quantity
    * @throws StockException if issue
    */
@@ -33,7 +34,7 @@ public interface StockReader
   
   /**
    * Returns an image of the product in the stock list
-   * @param pNum Product nymber
+   * @param pNum Product number
    * @return Image
    * @throws StockException if issue
    */

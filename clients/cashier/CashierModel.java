@@ -18,7 +18,7 @@ public class CashierModel extends Observable
 
   private State       theState   = State.process;   // Current state
   private Product     theProduct = null;            // Current product
-  private Basket      theBasket  = null;            // Bought items
+  protected Basket      theBasket  = null;            // Bought items
 
   private String      pn = "";                      // Product being processed
 
@@ -129,8 +129,29 @@ public class CashierModel extends Observable
     }
     theState = State.process;                   // All Done
     setChanged(); notifyObservers(theAction);
+    System.out.println("The basket after add" + theBasket);
   }
-  
+
+  public void removeLastItem() {
+    String theAction = "";
+    int    amount  = 1;
+
+    System.out.println("In BetterCashierModel");
+    System.out.println("TheBasket: " + theBasket);
+
+    if ( theBasket != null &&
+            theBasket.size() >= 1 ){
+
+      theBasket.remove(theBasket.size() - 1);
+      askForUpdate(); // Notify the view to update
+
+      System.out.println("Removed last item from basket");
+    }
+    else {theAction = "The basket is empty";}
+
+  setChanged(); notifyObservers(theAction);
+  }
+
   /**
    * Customer pays for the contents of the basket
    */
@@ -145,6 +166,7 @@ public class CashierModel extends Observable
       {                                       // T
         theOrder.newOrder( theBasket );       //  Process order
         theBasket = null;                     //  reset
+
       }                                       //
       theAction = "Next customer";            // New Customer
       theState = State.process;               // All Done
@@ -160,7 +182,7 @@ public class CashierModel extends Observable
   }
 
   /**
-   * ask for update of view callled at start of day
+   * ask for update of view called at start of day
    * or after system reset
    */
   public void askForUpdate()
@@ -187,7 +209,6 @@ public class CashierModel extends Observable
       }
     }
   }
-
   /**
    * return an instance of a new Basket
    * @return an instance of a new Basket

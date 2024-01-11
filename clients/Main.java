@@ -3,8 +3,10 @@ import clients.backDoor.BackDoorController;
 import clients.backDoor.BackDoorModel;
 import clients.backDoor.BackDoorView;
 import clients.cashier.CashierController;
+import clients.cashier.BetterCashierController;
 import clients.cashier.CashierModel;
 import clients.cashier.CashierView;
+import clients.cashier.BetterCashierView;
 import clients.cashier.BetterCashierModel;
 import clients.collection.CollectController;
 import clients.collection.CollectModel;
@@ -91,15 +93,14 @@ class Main
     window.setTitle( "Cashier Client MVC");
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     Dimension pos = PosOnScrn.getPos();
-    
-    CashierModel model      = new BetterCashierModel(mlf); //TODO: CHANGED CHASHIERMODEL TIL BETTERCASHIERMODEL
-    CashierView view        = new CashierView( window, mlf, pos.width, pos.height );
-    CashierController cont  = new CashierController( model, view );
+
+    BetterCashierModel model = new BetterCashierModel(mlf);
+    CashierView view = new CashierView( window, mlf, pos.width, pos.height);
+    BetterCashierController cont = new BetterCashierController(model, view);
     view.setController( cont );
 
     model.addObserver( view );       // Add observer to the model
-    window.setVisible(true);         // Make window visible
-    model.askForUpdate();            // Initial display
+    window.setVisible(true);
   }
 
   public void startBackDoorGUI_MVC(MiddleFactory mlf )
